@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>First</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#scrips").hide("fast");
+    $("#earnings").hide("fast");
+    // Show hidden paragraphs with different speeds
+    $("#place_order_button").click(function(){
+
+        $("#scrips").show("fast");
+
+    });
+    $("#earnings_button").click(function(){
+
+        $("#earnings").show("fast");
+
+    });
+    $("#cancel_button").click(function(){
+
+        $("#scrips").hide("fast");
+    });
+});
+
+</script>        
+
+<body style="margin: 0px;"><button id="place_order_button" class="btn btn-primary text-center" type="button" style="height: 39px;width: 332px;margin: 13px;padding: 0px;">Place Order</button>
+    <div id="scrips" class="card">
+        <div class="card-body">
+            <form method="POST" action="/place/">
+                {% csrf_token %}
+            <ul class="list-group">
+                {% for scrip in scrips %}
+                <li class="list-group-item"><span>{{ scrip }}</span></li>
+                {% endfor %}
+            </ul><button class="btn btn-primary" type="button" style="margin: 47px;background-color: rgb(255,107,0);width: 76px;" value="cancel" id="cancel_button" name="cancel">Cancel</button><button class="btn btn-primary" style="margin: 35px;background-color: rgb(85,152,18);width: 76px;" value="place" name="place" type="submit">Place</button></div>
+         </form>
+    </div>
+    <div class="card">
+        <div class="card-body"><button id="earnings_button" class="btn btn-primary text-center" type="button" style="height: 39px;width: 289px;margin: 13px;padding: 0px;">Show Profit / Loss</button>
+            <p id="earnings" class="text-center" style="color: rgb(0,0,0);"><strong>+ Rs. 100 @ 12:26:47 pm</strong></p>
+        </div>
+    </div>
+    <div class="card"></div><button class="btn btn-primary" type="button" style="margin: 49px;background-color: rgb(255,107,0);width: 83px;">Cancel all BUY</button><button class="btn btn-primary" type="button" style="margin: 35px;background-color: rgb(255,107,0);width: 83px;">Cancel all SELL</button>
+    
+</body>
+
+</html>
